@@ -1,0 +1,9 @@
+{
+  "name": "next-api-server",
+  "version": "0.0.1",
+  "main": "server.js",
+  "repository": "git@github.com:ghufr/next-api-server.git",
+  "author": "Ghufron Fikrianto <ghufronfr@gmail.com>",
+  "license": "MIT",
+  "private": true
+}

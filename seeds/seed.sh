@@ -1,0 +1,1 @@
+mongoimport --host localhost:27017 -d development -c todos --file ./seeds/data.json --jsonArray

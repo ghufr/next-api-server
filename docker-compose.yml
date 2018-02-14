@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    image: mhart/alpine-node:9.5.0
+    working_dir: '/usr/src/app'
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/usr/src/app
+    command: [ "yarn", "dev" ]
+
+  mongo:
+    image: mongo:3.6-jessie
+    command: [ "mongod", "--smallfiles", "--logpath=/dev/null" ]
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data-test:/data/db
+
+volumes:
+  mongo-data-test:

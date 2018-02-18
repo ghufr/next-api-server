@@ -1,9 +1,10 @@
 require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
-const app = express()
-
+const glob = require('glob')
 const bodyParser = require('body-parser')
+
+const app = express()
 
 const mongoUri = 'mongodb://mongo:27017/development'
 
@@ -21,13 +22,13 @@ app.use((req, res, next) => {
   next()
 })
 
-ApiRoutes(app)
-
 mongoose.Promise = Promise
 mongoose.connect(mongoUri)
 const db = mongoose.connection
 
 db.on('error', console.error.bind(console, 'connection error:'))
+
+glob.sync(rootPath + '/api/routes/*.js').forEach(controllerPath => require(controllerPath)(app))
 
 app.listen(PORT, (err) => {
   if (err) {

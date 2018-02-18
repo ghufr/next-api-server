@@ -16,6 +16,6 @@ exports.post = (req, res) => {
     if(err) {
       return res.sendStatus(500)
     }
-    res.status(200).json({ id: doc._id })
+    res.status(200).json({ id: doc._id, title: doc.title })
   })
 }

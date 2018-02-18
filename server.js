@@ -10,8 +10,6 @@ const mongoUri = 'mongodb://mongo:27017/development'
 
 const PORT = 5000
 
-const ApiRoutes = require('./src/routes/api')
-
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -28,6 +26,7 @@ const db = mongoose.connection
 
 db.on('error', console.error.bind(console, 'connection error:'))
 
+const rootPath = require('path').normalize(__dirname)
 glob.sync(rootPath + '/api/routes/*.js').forEach(controllerPath => require(controllerPath)(app))
 
 app.listen(PORT, (err) => {
